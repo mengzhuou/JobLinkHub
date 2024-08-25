@@ -5,6 +5,6 @@ Frontend Initial Setup
 4. run "npm start" (this is to ONLY start the frontend in port 3000)
 
 Backend Setup
-
 1. run "npm install"
 2. run "npm run dev"  (this is to ONLY start the backend in port 3500)
+
