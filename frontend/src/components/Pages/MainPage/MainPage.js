@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { withFuncProps } from "../../withFuncProps";
-import './EnterCode.css';
-import { collection, onSnapshot, DocumentData, addDoc } from 'firebase/firestore';
-import db from "../firebase";
+import './MainPage.css';
 
 
-class EnterCode extends Component {
+class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,12 +14,6 @@ class EnterCode extends Component {
     }
 
     componentDidMount() {
-        onSnapshot(collection(db, "Class"), (snapshot) => {
-            const classTable = snapshot.docs
-            .map((doc) => doc.data())
-            .sort((a, b) => b.Score - a.Score);
-            this.setState({ classTable: classTable });
-        });
     }
 
 
@@ -57,29 +49,11 @@ class EnterCode extends Component {
     render() {
         return (
             <div className="body">
-                <div className="enterCodeContainer">
-                    <h1 className="enterCodeTitle">Enter Class Code</h1>
-
-                    <input
-                        className="input-field"
-                        type="text"
-                        value={this.state.codeInput}
-                        onChange={this.handleInputChange}
-                        placeholder="Code"
-                        />
-                    <div className="error">
-                        {this.state.errorMessage && 
-                            <i>
-                                {this.state.errorMessage}
-                            </i>
-                        }
-                    </div>
-
-                    <button className="submit-button" onClick={this.handleSubmit}>Submit</button>
+                <div className="RecordPageContainer">
                 </div>
             </div>
         );
     }
 }
 
-export default withFuncProps(EnterCode);
+export default withFuncProps(MainPage);

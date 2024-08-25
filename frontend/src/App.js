@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import EnterCode from "./components/Pages/EnterCode/EnterCode";
+import Main from "./components/Pages/MainPage/MainPage";
 import TopNavBar from "./components/Functions/TopNavBar/TopNavBar";
 
 
@@ -11,7 +11,7 @@ class App extends Component {
       <Router>
         <TopNavBar/>
         <Routes>
-          <Route path="/" element={<EnterCode/>} />
+          <Route path="/" element={<Main/>} />
         </Routes>
       </Router>
     );
