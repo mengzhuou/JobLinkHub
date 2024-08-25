@@ -6,4 +6,4 @@
 
 <!-- Backend -->
 
-1. Running command: "npm run dev"  (this is to ONLY start the backend in port 3500)
+1. Running command: "npm run dev"  (this is to ONLY start the backend in port 3500) 
