@@ -13,18 +13,17 @@ class RecordTable extends Component {
         this.state = {
             records: [],
             columnDefs: [
-                { headerName: "Company", field: "company", sortable: true, filter: true },
-                { headerName: "Type", field: "type", sortable: true, filter: true },
-                { headerName: "Job Title", field: "jobTitle", sortable: true, filter: true },
-                { headerName: "Date", field: "date", sortable: true, filter: true },
-                { headerName: "Interview", field: "receivedInterview", sortable: true, filter: true },
-                { headerName: "Website Link", field: "websiteLink", sortable: true, filter: true },
-                { headerName: "Comment", field: "comment", sortable: true, filter: true },
-                { headerName: "Click", field: "click", sortable: true, filter: true },
+                { headerName: "Company", field: "company", sortable: true, filter: true, width: 230 },
+                { headerName: "Type", field: "type", sortable: true, filter: true, width: 130 },
+                { headerName: "Job Title", field: "jobTitle", sortable: true, filter: true, width: 230 },
+                { headerName: "Date", field: "date", sortable: true, filter: true, width: 120 },
+                { headerName: "Interview", field: "receivedInterview", sortable: true, filter: true, width: 110 },
+                { headerName: "Link", field: "websiteLink", sortable: true, filter: true, width: 120 },
+                { headerName: "Comment", field: "comment", sortable: true, filter: true, width: 140 },
+                { headerName: "Click", field: "click", sortable: true, filter: true, width: 130 },
             ],
             defaultColDef: {
-                flex: 1,
-                minWidth: 150,
+                // flex: 1,
             }
         };
     }
