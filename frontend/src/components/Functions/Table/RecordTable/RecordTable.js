@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import './RecordTable.css';
 import { getRecords } from '../../../../connector.js';
+
 
 
 class RecordTable extends Component {
@@ -15,7 +17,7 @@ class RecordTable extends Component {
                 { headerName: "Type", field: "type", sortable: true, filter: true },
                 { headerName: "Job Title", field: "jobTitle", sortable: true, filter: true },
                 { headerName: "Date", field: "date", sortable: true, filter: true },
-                { headerName: "Received Interview", field: "receivedInterview", sortable: true, filter: true },
+                { headerName: "Interview", field: "receivedInterview", sortable: true, filter: true },
                 { headerName: "Website Link", field: "websiteLink", sortable: true, filter: true },
                 { headerName: "Comment", field: "comment", sortable: true, filter: true },
                 { headerName: "Click", field: "click", sortable: true, filter: true },
