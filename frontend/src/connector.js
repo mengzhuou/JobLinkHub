@@ -15,7 +15,6 @@ const getRecords = async () => {
 const createRecord = async (data) => {
     const { company, type, jobTitle, date, receivedInterview, websiteLink, comment, click } = data;
 
-    // Frontend Validation
     if (!company || typeof company !== 'string') {
         throw new Error('Company is required and must be a string');
     }
@@ -40,8 +39,8 @@ const createRecord = async (data) => {
         throw new Error('Website link is required and must be a string');
     }
 
-    if (!comment || typeof comment !== 'string') {
-        throw new Error('Comment is required and must be a string');
+    if (comment && comment.length > 250) {
+        throw new Error('Comment cannot be more than 250 characters');
     }
 
     if (click == null || typeof click !== 'number') {

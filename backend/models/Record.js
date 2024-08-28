@@ -26,8 +26,7 @@ const recordSchema = new mongoose.Schema({
         required: true
     },
     comment: {
-        type: String,
-        required: true
+        type: String
     },
     click: {
         type: Number,

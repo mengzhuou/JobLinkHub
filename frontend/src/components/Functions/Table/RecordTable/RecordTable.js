@@ -4,6 +4,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './RecordTable.css';
 import { getRecords } from '../../../../connector.js';
+import LinkButton from '../../../Button/LinkButton/LinkButton';
 
 
 
@@ -16,15 +17,28 @@ class RecordTable extends Component {
                 { headerName: "Company", field: "company", sortable: true, filter: true, width: 230 },
                 { headerName: "Type", field: "type", sortable: true, filter: true, width: 130 },
                 { headerName: "Job Title", field: "jobTitle", sortable: true, filter: true, width: 230 },
-                { headerName: "Date", field: "date", sortable: true, filter: true, width: 120 },
+                { 
+                    headerName: "Date", 
+                    field: "date", 
+                    sortable: true, 
+                    filter: true, 
+                    width: 120,
+                    valueFormatter: (params) => {
+                        // Format date to YYYY-MM-DD
+                        const date = new Date(params.value);
+                        return date.toISOString().split('T')[0];
+                    }
+                },
                 { headerName: "Interview", field: "receivedInterview", sortable: true, filter: true, width: 110 },
-                { headerName: "Link", field: "websiteLink", sortable: true, filter: true, width: 120 },
-                { headerName: "Comment", field: "comment", sortable: true, filter: true, width: 140 },
-                { headerName: "Click", field: "click", sortable: true, filter: true, width: 130 },
-            ],
-            defaultColDef: {
-                // flex: 1,
-            }
+                { 
+                    headerName: "Link", 
+                    field: "websiteLink", 
+                    width: 95,
+                    cellRenderer: LinkButton
+                },
+                { headerName: "Comment", field: "comment", sortable: true, filter: true, width: 100 },
+                { headerName: "Click", field: "click", sortable: true, filter: true, width: 80 },
+            ]
         };
     }
 

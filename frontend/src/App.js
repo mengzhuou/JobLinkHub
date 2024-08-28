@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./components/Pages/MainPage/MainPage";
 import TopNavBar from "./components/Functions/TopNavBar/TopNavBar";
-import Application from "./components/Application/Application" 
+import Application from "./components/Pages/Application/Application" 
 
 class App extends Component {
 
