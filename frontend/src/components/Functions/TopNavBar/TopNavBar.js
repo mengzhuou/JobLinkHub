@@ -28,6 +28,11 @@ class TopNavBar extends Component {
     //     this.props.navigate("/Notification");
     // }
 
+    applicationNav = () => {
+        this.props.navigate("/Application");
+        this.toggleDropdown(); 
+    }
+
     logoutNav = () => {
         // goes to EnterCode page for now
         this.props.navigate("/");
@@ -42,7 +47,7 @@ class TopNavBar extends Component {
         return (
             <div className="navBar">
                 <div className="navBar-left">
-                    <div className="navTitle">LMC Film</div>
+                    <div className="navTitle">Job Link Hub</div>
                 </div>
                 <div className="navBar-right">
                     <div className="userIcon" onClick={this.toggleDropdown}>
@@ -54,6 +59,7 @@ class TopNavBar extends Component {
                             <div className="dropdown-container">
                                 <div className="dropdown-content">Profile</div>
                                 <div className="dropdown-content" onClick={this.logoutNav}>Logout</div>
+                                <div className="dropdown-content" onClick={this.applicationNav}>Application</div>
                                 <div className="dropdown-content">Notification</div>
                             </div>                        
                         )}
