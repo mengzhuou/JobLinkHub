@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './Application.css';
+import { createRecord } from '../../../connector.js';
+
 
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             company: '',
-            jobSeletion:'',
             positionType: '',
             receivedInterview: '',
             jobTitle: '',
@@ -22,8 +23,31 @@ class ApplicationForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.handleCreateRecord();
     }
 
+    handleCreateRecord = async () => {
+        const { company, positionType, receivedInterview, jobTitle, dateApplied, applicationLink, comment } = this.state;
+    
+        const recordData = {
+            company,
+            type: positionType,
+            jobTitle,
+            date: dateApplied,
+            receivedInterview: receivedInterview === 'YES',
+            websiteLink: applicationLink,
+            comment: comment === ''? '' : comment,
+            click: 1
+        };
+    
+        try {
+            const response = await createRecord(recordData);
+            console.log('Record created:', response);
+        } catch (error) {
+            console.error('Error creating record:', error);
+        }
+    }
+    
     render() {
         return (
             <div className="application-form-container">
@@ -36,14 +60,6 @@ class ApplicationForm extends Component {
                         value={this.state.company} 
                         onChange={this.handleChange} 
                     />
-                    <select
-                        name="jobSelection"
-                        value={this.state.jobSeletion}
-                        onChange={this.handleChange}
-                    >
-                        <option value="">Job Selection</option>
-
-                    </select>
                     <div className='line'>
                     <select 
                         name="positionType" 

@@ -40,8 +40,8 @@ const createRecord = async (data) => {
         throw new Error('Website link is required and must be a string');
     }
 
-    if (!comment || typeof comment !== 'string') {
-        throw new Error('Comment is required and must be a string');
+    if (comment.length > 2) {
+        throw new Error('Comment cannot be more than 250 characters');
     }
 
     if (click == null || typeof click !== 'number') {
