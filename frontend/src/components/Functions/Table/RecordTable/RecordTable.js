@@ -21,10 +21,7 @@ class RecordTable extends Component {
                 { headerName: "Link", field: "websiteLink", sortable: true, filter: true, width: 120 },
                 { headerName: "Comment", field: "comment", sortable: true, filter: true, width: 140 },
                 { headerName: "Click", field: "click", sortable: true, filter: true, width: 130 },
-            ],
-            defaultColDef: {
-                // flex: 1,
-            }
+            ]
         };
     }
 
