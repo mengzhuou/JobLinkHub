@@ -28,7 +28,7 @@ class ApplicationForm extends Component {
 
     handleCreateRecord = async () => {
         const { company, positionType, receivedInterview, jobTitle, dateApplied, applicationLink, comment } = this.state;
-    
+        
         const recordData = {
             company,
             type: positionType,
@@ -36,15 +36,17 @@ class ApplicationForm extends Component {
             date: dateApplied,
             receivedInterview: receivedInterview === 'YES',
             websiteLink: applicationLink,
-            comment: comment === ''? '' : comment,
+            comment: comment || '',
             click: 1
         };
     
         try {
             const response = await createRecord(recordData);
+            alert("Thank you! Your record has been saved.")
             console.log('Record created:', response);
         } catch (error) {
             console.error('Error creating record:', error);
+            alert("Whoops, something is wrong.")
         }
     }
     
