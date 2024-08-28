@@ -12,7 +12,6 @@ class App extends Component {
         <TopNavBar/>
         <Routes>
 
-          <Route path="/" element={<EnterCode/>} />
           <Route path="/Application" element={<Application/>}/>
 
           <Route path="/" element={<Main/>} />
