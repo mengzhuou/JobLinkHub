@@ -3,7 +3,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { withFuncProps } from "../../withFuncProps";
 import RecordTable from "../../Functions/Table/RecordTable/RecordTable";
 import './MainPage.css';
-import {jwtDecode} from "jwt-decode"; // Correct import without curly braces
+import {jwtDecode} from "jwt-decode"; 
 
 class MainPage extends Component {
     constructor(props) {
@@ -12,19 +12,18 @@ class MainPage extends Component {
             codeInput: "",
             classTable: [],
             isAuthenticated: false,
-            userInfo: null // Add userInfo to store decoded data
+            userInfo: null 
         };
     }
 
     handleLoginSuccess = (credentialResponse) => {
         console.log(credentialResponse);
-        // Decode the JWT token from Google
         const decodedUserInfo = jwtDecode(credentialResponse.credential); 
         console.log("Decoded User Info:", decodedUserInfo);
         
         this.setState({
             isAuthenticated: true,
-            userInfo: decodedUserInfo // Store decoded information in state
+            userInfo: decodedUserInfo 
         });
     };
 
