@@ -3,6 +3,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { withFuncProps } from "../../withFuncProps";
 import RecordTable from "../../Functions/Table/RecordTable/RecordTable";
 import './MainPage.css';
+import {jwtDecode} from "jwt-decode"; // Correct import without curly braces
 
 class MainPage extends Component {
     constructor(props) {
@@ -10,13 +11,21 @@ class MainPage extends Component {
         this.state = {
             codeInput: "",
             classTable: [],
-            isAuthenticated: false
+            isAuthenticated: false,
+            userInfo: null // Add userInfo to store decoded data
         };
     }
 
     handleLoginSuccess = (credentialResponse) => {
         console.log(credentialResponse);
-        this.setState({ isAuthenticated: true });
+        // Decode the JWT token from Google
+        const decodedUserInfo = jwtDecode(credentialResponse.credential); 
+        console.log("Decoded User Info:", decodedUserInfo);
+        
+        this.setState({
+            isAuthenticated: true,
+            userInfo: decodedUserInfo // Store decoded information in state
+        });
     };
 
     handleLoginError = () => {
@@ -36,6 +45,7 @@ class MainPage extends Component {
                         </div>
                     ) : (
                         <div className="record-table-section">
+                            <h3>Welcome, {this.state.userInfo?.name}</h3>
                             <RecordTable />
                         </div>
                     )}
