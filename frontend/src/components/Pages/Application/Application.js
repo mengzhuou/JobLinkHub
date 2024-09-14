@@ -13,12 +13,33 @@ class ApplicationForm extends Component {
             jobTitle: '',
             dateApplied: '',
             applicationLink: '',
-            comment: ''
+            comment: '',
+            commentLength: 0,
+            commentError: ''
         };
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        
+        if (name === 'comment') {
+            const length = value.length;
+            if (length > 250) {
+                this.setState({ 
+                    comment: value.substring(0, 250),
+                    commentLength: 250,
+                    commentError: 'Comment cannot be more than 250 characters'
+                });
+            } else {
+                this.setState({ 
+                    [name]: value,
+                    commentLength: length,
+                    commentError: ''
+                });
+            }
+        } else {
+            this.setState({ [name]: value });
+        }
     }
 
     handleSubmit = (e) => {
@@ -51,6 +72,8 @@ class ApplicationForm extends Component {
     }
     
     render() {
+        const { comment, commentError } = this.state;
+
         return (
             <div className="application-form-container">
                 <form className="application-form" onSubmit={this.handleSubmit}>
@@ -114,6 +137,10 @@ class ApplicationForm extends Component {
                         value={this.state.comment} 
                         onChange={this.handleChange} 
                     />
+                    <div className="comment-info">
+                        <span>{comment.length}/250</span>
+                        {commentError && <span className="error-message">{commentError}</span>}
+                    </div>
                     <button type="submit" className="submit-button">Submit Application</button>
                 </form>
             </div>
