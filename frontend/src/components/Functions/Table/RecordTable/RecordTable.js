@@ -6,8 +6,6 @@ import './RecordTable.css';
 import { getRecords } from '../../../../connector.js';
 import LinkButton from '../../../Button/LinkButton/LinkButton';
 
-
-
 class RecordTable extends Component {
     constructor(props) {
         super(props);
@@ -24,9 +22,17 @@ class RecordTable extends Component {
                     filter: true, 
                     width: 120,
                     valueFormatter: (params) => {
-                        // Format date to YYYY-MM-DD
+                        if (!params.value) {
+                            return 'No Date Provided';
+                        }
+                        
                         const date = new Date(params.value);
-                        return date.toISOString().split('T')[0];
+                        
+                        if (!isNaN(date.getTime())) {
+                            return date.toISOString().split('T')[0]; 
+                        } else {
+                            return 'Invalid Date';
+                        }
                     }
                 },
                 { headerName: "Interview", field: "receivedInterview", sortable: true, filter: true, width: 110 },
@@ -59,11 +65,15 @@ class RecordTable extends Component {
         return (
             <div className="body">
                 <div className="RecordPageContainer ag-theme-alpine" style={{ height: 500, width: '100%' }}>
-                    <AgGridReact
-                        rowData={this.state.records}
-                        columnDefs={this.state.columnDefs}
-                        defaultColDef={this.state.defaultColDef}
-                    />
+                    {this.state.records.length === 0 ? (
+                        <div>No records found</div>
+                    ) : (
+                        <AgGridReact
+                            rowData={this.state.records}
+                            columnDefs={this.state.columnDefs}
+                            defaultColDef={this.state.defaultColDef}
+                        />
+                    )}
                 </div>
             </div>
         );

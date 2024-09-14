@@ -3,7 +3,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { withFuncProps } from "../../withFuncProps";
 import RecordTable from "../../Functions/Table/RecordTable/RecordTable";
 import './MainPage.css';
-import {jwtDecode} from "jwt-decode"; 
+import { verifyGoogleLogin } from '../../../connector';
 
 class MainPage extends Component {
     constructor(props) {
@@ -16,19 +16,16 @@ class MainPage extends Component {
         };
     }
 
-    handleLoginSuccess = (credentialResponse) => {
-        console.log(credentialResponse);
-        const decodedUserInfo = jwtDecode(credentialResponse.credential); 
-        console.log("Decoded User Info:", decodedUserInfo);
-        
-        this.setState({
-            isAuthenticated: true,
-            userInfo: decodedUserInfo 
-        });
-    };
-
-    handleLoginError = () => {
-        console.log('Login Failed');
+    handleLoginSuccess = async (credentialResponse) => {
+        const token = credentialResponse.credential;
+        try {
+            const user = await verifyGoogleLogin(token);
+            console.log('User logged in successfully:', user);
+    
+            this.setState({ isAuthenticated: true, userInfo: user });
+        } catch (error) {
+            console.error('Google login failed:', error);
+        }
     };
 
     render() {

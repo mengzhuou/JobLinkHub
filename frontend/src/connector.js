@@ -2,6 +2,21 @@ import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+
+const verifyGoogleLogin = async (token) => {
+    try {
+        const res = await axios.post(`${BACKEND_URL}/user/auth/google-login`, { token }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return res.data;
+    } catch (error) {
+        console.error("Error during Google login:", error);
+        throw error;
+    }
+};
+
 const getRecords = async () => {
     try {
         const res = await axios.get(`${BACKEND_URL}/records`);
@@ -64,4 +79,5 @@ const createRecord = async (data) => {
 export {
     getRecords,
     createRecord,
+    verifyGoogleLogin,
 };

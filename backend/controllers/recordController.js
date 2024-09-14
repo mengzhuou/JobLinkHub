@@ -28,7 +28,8 @@ const createRecord = asyncHandler(async (req, res) => {
         receivedInterview, 
         websiteLink, 
         comment, 
-        click
+        click,
+        // userId: req.user._id
     });
 
     const savedRecord = await newRecord.save();

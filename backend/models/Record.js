@@ -31,7 +31,11 @@ const recordSchema = new mongoose.Schema({
     click: {
         type: Number,
         required: true
-    }
+    },
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }
 })
 
 module.exports = mongoose.model('Record', recordSchema)
