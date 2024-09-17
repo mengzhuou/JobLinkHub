@@ -38,7 +38,7 @@
 
 .submit-button {
     background-color: #ccc;
-    color: #666;
+    color: black;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -48,10 +48,27 @@
 }
 
 .submit-button:hover {
-    background-color: #a8a1a1;
+    background-color: #7c8be1;
 }
 
 .line {
     display: flex;
     gap:57px
+}
+
+.comment-info {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+label span {
+    color: red;
 }
