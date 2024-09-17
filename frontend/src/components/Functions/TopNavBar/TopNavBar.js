@@ -40,14 +40,17 @@ class TopNavBar extends Component {
         this.setState({isDroppedDown: !isDroppedDown})
     }
 
-
+    navigateHome = () => {
+        this.props.navigate("/");  
+    }
 
     render() {
         const { isDroppedDown } = this.state;
         return (
             <div className="navBar">
                 <div className="navBar-left">
-                    <div className="navTitle">Job Link Hub</div>
+                <div className="navTitle" onClick={this.navigateHome}>
+                Job Link Hub</div>
                 </div>
                 <div className="navBar-right">
                     <div className="userIcon" onClick={this.toggleDropdown}>

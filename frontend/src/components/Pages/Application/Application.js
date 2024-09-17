@@ -18,6 +18,10 @@ class ApplicationForm extends Component {
             commentError: ''
         };
     }
+    componentDidMount() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("date-applied").setAttribute("max", today);
+    }
 
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -75,17 +79,20 @@ class ApplicationForm extends Component {
         const { comment, commentError } = this.state;
 
         return (
-            <div className="application-form-container">
+            <div className="application-form-container" >
                 <form className="application-form" onSubmit={this.handleSubmit}>
-                    <h2>Add Your Application</h2>
+                    <h2 >Add Your Application</h2>
+                    <label>Company<span>*</span></label>
                     <input 
                         type="text" 
                         name="company" 
-                        placeholder="Company" 
                         value={this.state.company} 
                         onChange={this.handleChange} 
+                        
                     />
                     <div className='line'>
+                        <div>
+                        <label>PositionType<span>*</span></label>
                     <select 
                         name="positionType" 
                         placeholder="Type of Position"
@@ -98,42 +105,46 @@ class ApplicationForm extends Component {
                         <option value="Full-Time">Full-Time</option>
                         <option value="Coop">Coop</option>
                     </select>
-                    
+                    </div>
+                    <div>
+                    <label>ReceivedInterview?<span>*</span></label>
                     <select 
                         name="receivedInterview" 
-                        placeholder="Received Interview"
                         value={this.state.receivedInterview} 
                         onChange={this.handleChange}
                     >
-                        <option value="">Received Interview?</option>
+                        <option value="">Received Interview</option>
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
 
                     </select>
                     </div>
+                    </div>
+                    <label>Job Title<span>*</span></label>
                     <input 
                         type="text" 
                         name="jobTitle" 
-                        placeholder="Job Title" 
                         value={this.state.jobTitle} 
                         onChange={this.handleChange} 
                     />
+                    <label>Date<span>*</span></label>
                     <input 
                         type="date" 
+                        id="date-applied" 
                         name="dateApplied" 
                         value={this.state.dateApplied} 
                         onChange={this.handleChange} 
                     />
+                    <label>Application Link<span>*</span></label>
                     <input 
                         type="url" 
                         name="applicationLink" 
-                        placeholder="Application Link" 
                         value={this.state.applicationLink} 
                         onChange={this.handleChange} 
                     />
+                    <label>Comment</label>
                     <textarea 
                         name="comment" 
-                        placeholder="Comment" 
                         value={this.state.comment} 
                         onChange={this.handleChange} 
                     />
